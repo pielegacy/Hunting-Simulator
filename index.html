@@ -1,0 +1,85 @@
+<html>
+    <head>
+            <link rel="stylesheet" href ="main.css">
+            <title> Hunting Simulator 1996 Extreme Legends Browser Edition</title>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="application/javascript"></script>
+    <script>
+        var level = 1;
+        var firsttime = true;
+        function p(words){
+            $("#parser").scrollTop = $("#parser").scrollHeight;
+            $("#parser").append("\n" + words);
+        }
+        function c(){
+            $("#parser").text("");
+        }
+        function menu(){
+            c();
+            p("--Hunt Net v1.420--");
+            p("Welcome to Hunt Net, the Hunter's ultimate tool.");
+            if (firsttime == true){
+                p("It seems you haven't set up your Hunt Net drivers yet.");
+                p("Let us just process that for you");
+            }
+            else{
+                p("Click on a link to begin");
+            }
+        }
+        function a_bool(panswer, nanswer, id){
+            p("\n<span class = 'choice' id='y" + id + "'>" + panswer + "</span>");
+            p("<span class = 'choice' id='n" + id + "'>" + nanswer + "</span>\n");
+            $("#y" + id).click(function(){decisions("y", id)});
+            $("#n" + id).click(function(){decisions("n", id)});                             
+        }
+        function s(statement,id){
+            p("\n<span class = 'choice' id='s" + id + "'>" + statement + "</span>");
+            $("#s" + id).click(function(){singles(id)});
+        }
+        function decisions(choice, id){
+            c();
+            if (choice == "y"){
+                if (id == 1){
+                    p("Well easy there my friend, before you can brutally murder some innocent animals we have to sign you up for a hunting license.");
+                    s("Hunting license?",1);
+                }
+            }
+            if (choice == "n"){
+                if (id == 1){
+                    p("Well you can bugger off if you're going to be like that.");
+                    window.close();
+                    p("Oh so you came crawling back. I knew you would, they always do.");
+                    decisions("y", 1);
+                }
+            }
+        }
+        function singles(id){
+            c();
+            if (id == 0){
+                menu();
+            }
+            if (id == 1){
+                p("Yes a hunting license. It's pretty simple, all I need is a name.");
+                p("We already have your details on file so you are now an official level 1 hunter.");
+                s("Sweet", 0);
+            }
+        }
+        function inputname(){
+            p("<textarea id='createname' enabled='true'></textarea>");
+            $("#createname").disabled = false;
+        }
+        $(document).ready(function(){
+           p("Welcome to the wild world of Hunting Simulator! Do you have what it takes to be the best god dern hunter ever?");
+            a_bool("I guess", "Nah I don't feel like it", 1);
+        });
+    
+    </script>
+    </head>
+
+    <body>
+        <div id="gamesection">
+            <h1>Hunting Simulator 1996 Extreme Legends Browser Edition</h1>
+            <textarea disabled id="parser"></textarea>
+            <textarea disabled id="hunt-net"></textarea>
+        </div>
+    </body>
+</html>
